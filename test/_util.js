@@ -77,6 +77,10 @@ module.exports = {
   assertWarning: function assertWarning (t, message) {
     t.true(console.warn.calledWithExactly(message), `console.warn should be called with: ${message}`)
   },
+  assertPathNotExists: function assertPathNotExists (t, pathToCheck, message) {
+    return fs.pathExists(pathToCheck)
+      .then(exists => t.false(exists))
+  },
   fixtureSubdir: setup.fixtureSubdir,
   generateResourcesPath: function generateResourcesPath (opts) {
     if (common.isPlatformMac(opts.platform)) {
